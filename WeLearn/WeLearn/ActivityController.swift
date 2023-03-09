@@ -40,7 +40,7 @@ class ActivityController: UIViewController {
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             if segue.identifier == "showHelp" {
-                let destinationVC = segue.destination as! DestinationViewController
+                let destinationVC = segue.destination as! HelpDestinationViewController
                 if currentIndex == 0 {
                     destinationVC.data = " Addition "
                 }
@@ -51,11 +51,24 @@ class ActivityController: UIViewController {
                     destinationVC.data = " Division "
                 }
             }
+            if segue.identifier == "showHint" {
+                let destinationVC = segue.destination as! HintDestinationViewController
+                if currentIndex == 0 {
+                    destinationVC.data = " When calculating the addition between two numbers keep in mind that we must combine the values and calculate the result, for instance 2+2=4 "
+                }
+                if currentIndex == 1 {
+                    destinationVC.data = "Multiplication is a mathematical operation used to find the product of two or more numbers. The result of multiplication is called the product. For example, the product of 4 and 3 is 12. "
+                }
+                if currentIndex == 2 {
+                    destinationVC.data = " Division is a mathematical operation used to divide a number into equal parts. The number being divided is called the dividend, and the number of equal parts that it is divided into is called the divisor. The result of division is called the quotient. For example, if 12 is divided into 3 equal parts, each part would be 4, so the quotient is 4."
+                }
+            }
+        
         }
 }
 
-
-class DestinationViewController: UIViewController {
+// destination controller for when users ask for guidance
+class HelpDestinationViewController: UIViewController {
 
     var data: String?
     @IBOutlet var textView:UITextView!
@@ -70,3 +83,18 @@ class DestinationViewController: UIViewController {
 
 }
 
+//destination controller for when users ask for a hint
+class HintDestinationViewController: UIViewController {
+
+    var data: String?
+    @IBOutlet var textView:UITextView!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        textView.text=data
+
+        if let data = data {
+            print(data)
+        }
+    }
+
+}
