@@ -16,6 +16,7 @@
 		F86C75C529B8D1E300D6AFF8 /* ScheduleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86C75C429B8D1E300D6AFF8 /* ScheduleController.swift */; };
 		F86C75C729B8D52400D6AFF8 /* ActivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86C75C629B8D52400D6AFF8 /* ActivityController.swift */; };
 		F86C75C929BF60D400D6AFF8 /* ColourGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86C75C829BF60D400D6AFF8 /* ColourGameController.swift */; };
+		F86C75CB29C0E29C00D6AFF8 /* GuidanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86C75CA29C0E29C00D6AFF8 /* GuidanceController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		F86C75C429B8D1E300D6AFF8 /* ScheduleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleController.swift; sourceTree = "<group>"; };
 		F86C75C629B8D52400D6AFF8 /* ActivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityController.swift; sourceTree = "<group>"; };
 		F86C75C829BF60D400D6AFF8 /* ColourGameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColourGameController.swift; sourceTree = "<group>"; };
+		F86C75CA29C0E29C00D6AFF8 /* GuidanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidanceController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				F86C75C429B8D1E300D6AFF8 /* ScheduleController.swift */,
 				F86C75C829BF60D400D6AFF8 /* ColourGameController.swift */,
 				F86C75C629B8D52400D6AFF8 /* ActivityController.swift */,
+				F86C75CA29C0E29C00D6AFF8 /* GuidanceController.swift */,
 				F86C75B629B8BE7100D6AFF8 /* Main.storyboard */,
 				F86C75B929B8BE7300D6AFF8 /* Assets.xcassets */,
 				F86C75BB29B8BE7300D6AFF8 /* LaunchScreen.storyboard */,
@@ -147,6 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F86C75CB29C0E29C00D6AFF8 /* GuidanceController.swift in Sources */,
 				F86C75C529B8D1E300D6AFF8 /* ScheduleController.swift in Sources */,
 				F86C75B529B8BE7100D6AFF8 /* ViewController.swift in Sources */,
 				F86C75B129B8BE7100D6AFF8 /* AppDelegate.swift in Sources */,
