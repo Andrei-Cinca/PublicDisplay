@@ -18,7 +18,10 @@ class ActivityController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "cb2.pdf")
+        backgroundImage.contentMode =  UIView.ContentMode.scaleAspectFill
+        self.view.insertSubview(backgroundImage, at: 0)
         // Set the initial image
         imageView.image = UIImage(named: imageNames[currentIndex])
     }
@@ -75,7 +78,12 @@ class HelpDestinationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         textView.text=data
-
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "helpb.pdf")
+        backgroundImage.contentMode =  UIView.ContentMode.scaleAspectFill
+        self.view.insertSubview(backgroundImage, at: 0)
+        
+      
         if let data = data {
             print(data)
         }

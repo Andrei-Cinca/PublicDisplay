@@ -18,9 +18,13 @@ class GuidanceController: UIViewController {
         super.viewDidLoad()
         textView.text = " Exit the class. Go left."
         imgView.image = UIImage(named: locationsNames[currentIndex])
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "cb2.pdf")
+        backgroundImage.contentMode =  UIView.ContentMode.scaleAspectFill
+        self.view.insertSubview(backgroundImage, at: 0)
        
     }
-    let locationsNames = ["loc1.png", "loc2.png", "loc3.png", "geom.png"]
+    let locationsNames = ["loc1.png", "loc2.png", "read.pdf", "geom.png"]
     
     @IBAction func nextButtonTapped(_ sender: UIButton) {
         // Increment the index and wrap around if necessary
@@ -38,6 +42,7 @@ class GuidanceController: UIViewController {
         }
         if currentIndex == 3 {
             textView.text = "Congratulations you have reached the next class. Enjoy your geometry class."
+            directionButton.isEnabled=false
         }
         
         

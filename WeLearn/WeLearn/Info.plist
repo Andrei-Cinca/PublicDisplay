@@ -21,9 +21,5 @@
 			</array>
 		</dict>
 	</dict>
-	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>We would like to use your mic</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>We would like to use your mic</string>
 </dict>
 </plist>

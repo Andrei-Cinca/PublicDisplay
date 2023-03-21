@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  WeLearn
 //
-//  Created by Andrei Cinca on 08/03/2023.
+//  Created by Andrei Cinca
 //
 import UIKit
 import Speech
@@ -19,7 +19,12 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "wb1.pdf")
+        backgroundImage.contentMode =  UIView.ContentMode.scaleAspectFill
+        self.view.insertSubview(backgroundImage, at: 0)
+        
         // Disable the record button until authorization is granted
         recordButton.isEnabled = false
 
@@ -52,7 +57,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
             try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
             try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
         } catch {
-            print("Error configuring audio session: \\\\(error.localizedDescription)")
+            print("Error configuring audio session")
         }
 
         // Configure the audio engine for recording
@@ -79,7 +84,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
         do {
             try audioEngine.start()
         } catch {
-            print("Error starting audio engine: \\\\(error.localizedDescription)")
+            print("Error starting audio engine")
         }
     }
 

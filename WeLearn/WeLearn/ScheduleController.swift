@@ -14,6 +14,17 @@ class ScheduleController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "cb1.pdf")
+        backgroundImage.contentMode =  UIView.ContentMode.scaleAspectFill
+        self.view.insertSubview(backgroundImage, at: 0)
+    }
+    
+    
+    @IBAction func imageTapped(_ sender: UITapGestureRecognizer) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyboard.instantiateViewController(withIdentifier: "TasksDestinationViewController")
+        self.present(newViewController, animated: true, completion: nil)
     }
     
     @IBAction func showPopupMon(_ sender: UIButton) {
@@ -57,3 +68,45 @@ class ScheduleController: UIViewController {
 
 }
 
+
+class TasksDestinationViewController: UIViewController {
+
+    
+    @IBOutlet var buttonOne:UIButton!
+    @IBOutlet var buttonTwo:UIButton!
+    @IBOutlet var buttonThree:UIButton!
+    @IBOutlet var buttonFour:UIButton!
+    var tintOneColor: UIColor?
+    var tintTwoColor: UIColor?
+    var tintThreeColor: UIColor?
+    var tintFourColor: UIColor?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "cb1.pdf")
+        backgroundImage.contentMode =  UIView.ContentMode.scaleAspectFill
+        self.view.insertSubview(backgroundImage, at: 0)
+        if let colorOne = tintOneColor {
+                    buttonOne.tintColor = colorOne
+                }
+        
+        
+    }
+    
+    @IBAction func buttonOneTapped (_ sender: UIButton){
+        buttonOne.tintColor = UIColor.green
+        tintOneColor = UIColor.green
+    }
+    @IBAction func buttonTwoTapped (_ sender: UIButton){
+        buttonTwo.tintColor = UIColor.green
+    }
+    @IBAction func buttonThreeTapped (_ sender: UIButton){
+        buttonThree.tintColor = UIColor.green
+    }
+    @IBAction func buttonFourTapped (_ sender: UIButton){
+        buttonFour.tintColor = UIColor.green
+    }
+    
+
+}
