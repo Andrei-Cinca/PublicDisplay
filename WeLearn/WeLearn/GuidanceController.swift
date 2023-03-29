@@ -16,7 +16,7 @@ class GuidanceController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        textView.text = " Exit the class. Go left."
+        textView.text = " Exit the class. Go left. Climb down one flight of stairs"
         imgView.image = UIImage(named: locationsNames[currentIndex])
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: "cb2.pdf")
@@ -24,7 +24,7 @@ class GuidanceController: UIViewController {
         self.view.insertSubview(backgroundImage, at: 0)
        
     }
-    let locationsNames = ["loc1.png", "loc2.png", "read.pdf", "geom.png"]
+    let locationsNames = ["bh01.pdf", "bh02.pdf", "bh03.pdf", "bh04.pdf"]
     
     @IBAction func nextButtonTapped(_ sender: UIButton) {
         // Increment the index and wrap around if necessary
@@ -35,17 +35,24 @@ class GuidanceController: UIViewController {
         
     
         if currentIndex == 1 {
-            textView.text = "Climb the stairs to level 2"
+            textView.text = "Take a left. Go through the door"
         }
         if currentIndex == 2 {
-            textView.text = "Walk forward. Third door on the left ( 205)"
+            textView.text = "Go right. Keep going forward until you see room 5.20 "
         }
         if currentIndex == 3 {
-            textView.text = "Congratulations you have reached the next class. Enjoy your geometry class."
+            textView.text = "Congratulations you have reached the next class. Enjoy your CS1 class."
             directionButton.isEnabled=false
         }
         
         
+    }
+    
+    @IBAction func resetCounter(_ sender: UIButton){
+        currentIndex=0
+        imgView.image = UIImage(named: locationsNames[currentIndex])
+        directionButton.isEnabled=true
+        textView.text = " Exit the class. Go left. Climb down one flight of stairs"
     }
     
     
