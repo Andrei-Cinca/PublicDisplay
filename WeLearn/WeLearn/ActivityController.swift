@@ -96,6 +96,22 @@ class ActivityController: UIViewController {
                 }
             }
         
+                if segue.identifier == "checkAnswer" {
+                    let destinationVC = segue.destination as! AnswerCheckViewController
+                    if currentIndex == 0 {
+                        destinationVC.questionIndex = currentIndex
+                        destinationVC.correctAnswerIndex=0
+                    }
+                    if currentIndex == 1 {
+                        destinationVC.questionIndex = currentIndex
+                        destinationVC.correctAnswerIndex=1
+                    }
+                    if currentIndex == 2 {
+                        destinationVC.questionIndex = currentIndex
+                        destinationVC.correctAnswerIndex=2
+                    }
+                }
+        
         }
 }
 
@@ -135,3 +151,108 @@ class HintDestinationViewController: UIViewController {
     }
 
 }
+
+
+class AnswerCheckViewController: UIViewController {
+
+    var questionIndex=0
+    var correctAnswerIndex = 0
+    let answersOne = ["Yes, cloud computing can be done online with no servers", "No, you need physical servers.", "You must have some physical servers only, but not a lot"]
+    let answersTwo = ["The nucleus is blue", "The nucleus is transparent ( does not have a color)", "The nuclues has a color but I do not know it"]
+    let answersThree = ["Sigmund Freud means that we should be able to do it", "Freud wants to say that we cannot do it because we do not want it enough", "Freud is saying that it goes pat out capacity to view such a scenario since we would eventually cast someone else in that position"]
+    
+    @IBOutlet weak var questionLabel: UILabel!
+    @IBOutlet weak var option1Button: UIButton!
+    @IBOutlet weak var option2Button: UIButton!
+    @IBOutlet weak var option3Button: UIButton!
+    @IBOutlet weak var feedbackLabel: UITextView!
+
+    var failedAnswers = 0
+    var goodAnswers = 0
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if questionIndex == 0 {
+            questionLabel.text = "Do you need physical servers to use a cloud computing service?"
+            option1Button.setTitle(answersOne[0], for: .normal)
+            option2Button.setTitle(answersOne[1], for: .normal)
+            option3Button.setTitle(answersOne[2], for: .normal)
+        }
+        if questionIndex == 1 {
+            questionLabel.text = "What color is the nucleus of a cell?"
+            option1Button.setTitle(answersTwo[0], for: .normal)
+            option2Button.setTitle(answersTwo[1], for: .normal)
+            option3Button.setTitle(answersTwo[2], for: .normal)
+        }
+        if questionIndex == 2 {
+            questionLabel.text = "what does Sigmund Freud mean by this: “we cannot represent our own death because in trying to do so, we are always still left as spectators”"
+            option1Button.setTitle(answersThree[0], for: .normal)
+            option2Button.setTitle(answersThree[1], for: .normal)
+            option3Button.setTitle(answersThree[2], for: .normal)
+        }
+        
+        
+    }
+    
+    func showFeedback(_ gAnswers: Int, _ wAnswers: Int){
+        if gAnswers > 0 {
+            feedbackLabel.text="Congratulations! The answer is correct. Move to the next topic."
+            feedbackLabel.isEditable=false
+        }
+        else {
+            if wAnswers > 0 {
+                feedbackLabel.text="The answer is incorrect. See Hints or ask for Guidance."
+            }
+        }
+    }
+    
+    @IBAction func option1Selected(_ sender: UIButton) {
+        checkAnswer(0,sender)
+        showFeedback(goodAnswers, failedAnswers)
+    }
+
+    @IBAction func option2Selected(_ sender: UIButton) {
+        checkAnswer(1,sender)
+        showFeedback(goodAnswers, failedAnswers)
+    }
+
+    @IBAction func option3Selected(_ sender: UIButton) {
+        checkAnswer(2,sender)
+        showFeedback(goodAnswers, failedAnswers)
+    }
+
+    func checkAnswer(_ selectedAnswerIndex: Int, _ btn: UIButton) {
+        if selectedAnswerIndex == correctAnswerIndex {
+            goodAnswers = goodAnswers + 1
+            
+            btn.backgroundColor = UIColor.green
+            option1Button.isEnabled = false
+            option2Button.isEnabled = false
+            option3Button.isEnabled = false
+//            UIView.animate(withDuration: 4, animations: {
+//                btn.backgroundColor = UIColor.white
+//            }, completion: { (completed) in
+//                self.option1Button.isEnabled = true
+//                self.option2Button.isEnabled = true
+//                self.option3Button.isEnabled = true
+//            })
+        } else {
+            failedAnswers = failedAnswers + 1
+          
+            btn.backgroundColor = UIColor.red
+            option1Button.isEnabled = false
+            option2Button.isEnabled = false
+            option3Button.isEnabled = false
+            UIView.animate(withDuration: 3, animations: {
+                btn.backgroundColor = UIColor.white
+            }, completion: { (completed) in
+                self.option1Button.isEnabled = true
+                self.option2Button.isEnabled = true
+                self.option3Button.isEnabled = true
+            })
+        }
+    }
+
+}
+
+
