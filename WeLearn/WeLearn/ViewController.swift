@@ -42,9 +42,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     // the interaction when the button for recording is tapped
     @IBAction func recordButtonTapped(_ sender: UIButton) {
         if audioEngine.isRunning {
-            audioEngine.stop()
-            request.endAudio()
-            recordButton.isEnabled = false
+            stopRecording()
             recordButton.setTitle("", for: .normal)
         } else {
             startRecording()
@@ -88,6 +86,16 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
         } catch {
             print("Error starting audio engine")
         }
+    }
+    //stops the recording by adding tap removal functionality
+    func stopRecording() {
+        // Remove tap
+        let inputNode = audioEngine.inputNode
+        inputNode.removeTap(onBus: 0)
+        // Stop recording
+        audioEngine.stop()
+        request.endAudio()
+        recordButton.isEnabled = true
     }
 
 }
