@@ -2,9 +2,9 @@
 //  ColourGameController.swift
 //  WeLearn
 //
-//  Created by Andrei Cinca on 13/03/2023.
+//  Created by Andrei Cinca 
 //
-
+// This Controller handles the mini-game feature of the app
 import UIKit
 import Foundation
 class ColourGameController: UIViewController {
@@ -24,7 +24,7 @@ class ColourGameController: UIViewController {
         // Set the initial image
         
     }
-    
+    // change the colour to a random one every time the button is tapped
     @IBAction func changeColour(_ sender: UIButton){
         clicks=clicks+1
         progressValue += 0.02

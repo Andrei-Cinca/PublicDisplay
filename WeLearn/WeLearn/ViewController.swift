@@ -4,6 +4,7 @@
 //
 //  Created by Andrei Cinca
 //
+// This controller takes care of the transcription functionality and printing out the speech-to-text
 import UIKit
 import Speech
 
@@ -25,10 +26,10 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
         backgroundImage.contentMode =  UIView.ContentMode.scaleAspectFill
         self.view.insertSubview(backgroundImage, at: 0)
         
-        // Disable the record button until authorization is granted
+        // wait for authorization to be granted
         recordButton.isEnabled = false
 
-        // Request authorization to use speech recognition
+        // Request authorization for use of speech libraries and caption input
         SFSpeechRecognizer.requestAuthorization { (authStatus) in
             DispatchQueue.main.async {
                 if authStatus == .authorized {
@@ -37,13 +38,14 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
             }
         }
     }
-
+    
+    // the interaction when the button for recording is tapped
     @IBAction func recordButtonTapped(_ sender: UIButton) {
         if audioEngine.isRunning {
             audioEngine.stop()
             request.endAudio()
             recordButton.isEnabled = false
-            recordButton.setTitle("Record", for: .normal)
+            recordButton.setTitle("", for: .normal)
         } else {
             startRecording()
             recordButton.setTitle("Stop", for: .normal)
@@ -51,7 +53,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     }
 
     func startRecording() {
-        // Configure the audio session for recording
+        // Configure session for recording audio
         let audioSession = AVAudioSession.sharedInstance()
         do {
             try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
@@ -60,7 +62,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
             print("Error configuring audio session")
         }
 
-        // Configure the audio engine for recording
+        // Configure the  engine
         let inputNode = audioEngine.inputNode
         request.shouldReportPartialResults = true
         recognitionTask = speechRecognizer?.recognitionTask(with: request, resultHandler: { (result, error) in
@@ -75,7 +77,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
             }
         })
 
-        // Start the audio engine and recording
+        // Begin the recording
         let format = inputNode.outputFormat(forBus: 0)
         inputNode.installTap(onBus: 0, bufferSize: 1024, format: format) { (buffer, time) in
             self.request.append(buffer)

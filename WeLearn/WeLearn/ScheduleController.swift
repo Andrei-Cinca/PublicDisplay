@@ -2,9 +2,9 @@
 //  ScheduleController.swift
 //  WeLearn
 //
-//  Created by Andrei Cinca on 08/03/2023.
+//  Created by Andrei Cinca 
 //
-
+// This controller takes care of the schedule and tracking page
 import Foundation
 import Speech
 import UIKit
@@ -20,12 +20,14 @@ class ScheduleController: UIViewController {
         self.view.insertSubview(backgroundImage, at: 0)
     }
     
-     
+     // when an image is tapped
     @IBAction func imageTapped(_ sender: UITapGestureRecognizer) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyboard.instantiateViewController(withIdentifier: "TasksDestinationViewController")
         self.present(newViewController, animated: true, completion: nil)
     }
+    
+    //functions for every label ( every day of the week)
     
     @IBAction func showPopupMon(_ sender: UIButton) {
         let alertController = UIAlertController(title: "Monday's Activity", message: "Today's activities will be focused around reading, writing and comprehending literature.", preferredStyle: .alert)
@@ -48,7 +50,6 @@ class ScheduleController: UIViewController {
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
     }
-
     @IBAction func showPopupThu(_ sender: UIButton) {
         let alertController = UIAlertController(title: "Thursday's Activity", message: "Today's activities will be focused around physics", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { _ in
@@ -56,7 +57,6 @@ class ScheduleController: UIViewController {
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
     }
-
     @IBAction func showPopupFri(_ sender: UIButton) {
         let alertController = UIAlertController(title: "Friday's Activity", message: "Today's activities will be focused around sports", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { _ in
@@ -67,6 +67,7 @@ class ScheduleController: UIViewController {
 
 
 }
+
 
 //
 // class for the screen that handles progress checking
@@ -93,7 +94,7 @@ class TasksDestinationViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
 
-            // Retrieve the button color and enabled state from UserDefaults
+            // Access the details from UserDefaults
             let defaults = UserDefaults.standard
         if let colorData = defaults.data(forKey: "buttonOneColor"),
         let color = try? NSKeyedUnarchiver.unarchivedObject(ofClass: UIColor.self, from: colorData) {
@@ -168,7 +169,9 @@ class TasksDestinationViewController: UIViewController {
         defaults.set(0.0,forKey: "progressBarValue")
     }
     
+
     @IBAction func buttonOneTapped (_ sender: UIButton){
+        //accessing the value for the background color and increasing the progress
         let defaults = UserDefaults.standard
         progressValue=defaults.float(forKey: "progressBarValue")
         progressValue += 0.25
@@ -177,7 +180,7 @@ class TasksDestinationViewController: UIViewController {
         buttonOne.tintColor = UIColor.green
         tintOneColor = UIColor.green
         buttonOne.isUserInteractionEnabled=false
-        
+        //saving the value for the background color and saving the progress
         let colorData = try? NSKeyedArchiver.archivedData(withRootObject: buttonOne.tintColor!, requiringSecureCoding: false)
         defaults.set(colorData, forKey: "buttonOneColor")
         defaults.set( buttonOne.isUserInteractionEnabled, forKey: "buttonOneEnabled")
@@ -190,8 +193,9 @@ class TasksDestinationViewController: UIViewController {
             
         }
     }
-    
+
     @IBAction func buttonTwoTapped (_ sender: UIButton){
+        //accessing the value for the background color and increasing the progress
         let defaults = UserDefaults.standard
         progressValue=defaults.float(forKey: "progressBarValue")
         progressValue += 0.25
@@ -199,7 +203,7 @@ class TasksDestinationViewController: UIViewController {
         defaults.set(progressValue, forKey: "progressBarValue")
         buttonTwo.tintColor = UIColor.green
         buttonTwo.isUserInteractionEnabled=false
-     
+        //saving the value for the background color and saving the progress
         let colorData = try? NSKeyedArchiver.archivedData(withRootObject: buttonTwo.tintColor!, requiringSecureCoding: false)
         defaults.set(colorData, forKey: "buttonTwoColor")
         defaults.set( buttonTwo.isUserInteractionEnabled, forKey: "buttonTwoEnabled")
@@ -215,6 +219,7 @@ class TasksDestinationViewController: UIViewController {
     }
     
     @IBAction func buttonThreeTapped (_ sender: UIButton){
+        //accessing the value for the background color and increasing the progress
         let defaults = UserDefaults.standard
         buttonThree.tintColor = UIColor.green
         progressValue=defaults.float(forKey: "progressBarValue")
@@ -222,6 +227,7 @@ class TasksDestinationViewController: UIViewController {
         progressView.setProgress(progressValue, animated: true)
         defaults.set(progressValue, forKey: "progressBarValue")
         buttonThree.isUserInteractionEnabled=false
+        //saving the value for the background color and saving the progress
         let colorData = try? NSKeyedArchiver.archivedData(withRootObject: buttonThree.tintColor!, requiringSecureCoding: false)
         defaults.set(colorData, forKey: "buttonThreeColor")
         defaults.set( buttonThree.isUserInteractionEnabled, forKey: "buttonThreeEnabled")
@@ -236,6 +242,7 @@ class TasksDestinationViewController: UIViewController {
         }
     }
     @IBAction func buttonFourTapped (_ sender: UIButton){
+        //accessing the value for the background color and increasing the progress
         let defaults = UserDefaults.standard
         buttonFour.tintColor = UIColor.green
         progressValue=defaults.float(forKey: "progressBarValue")
@@ -243,6 +250,7 @@ class TasksDestinationViewController: UIViewController {
         progressView.setProgress(progressValue, animated: true)
         buttonFour.isUserInteractionEnabled=false
         defaults.set(progressValue, forKey: "progressBarValue")
+        //saving the value for the background color and saving the progress
         let colorData = try? NSKeyedArchiver.archivedData(withRootObject: buttonFour.tintColor!, requiringSecureCoding: false)
         defaults.set(colorData, forKey: "buttonFourColor")
         defaults.set( buttonFour.isUserInteractionEnabled, forKey: "buttonFourEnabled")

@@ -2,8 +2,9 @@
 //  ActivityController.swift
 //  WeLearn
 //
-//  Created by Andrei Cinca on 08/03/2023.
+//  Created by Andrei Cinca 
 //
+// this page handles the Activity screen, with functionalities such as check answer, ask for help or guidance
 
 import Foundation
 import Speech
@@ -38,10 +39,10 @@ class ActivityController: UIViewController {
     }
 
     @IBAction func nextButtonTapped(_ sender: UIButton) {
-        // Increment the index and wrap around if necessary
+        // Increase the index
         currentIndex = (currentIndex + 1) % imageNames.count
 
-        // Set the new image
+        // Set the correct image
         imageView.image = UIImage(named: imageNames[currentIndex])
         if currentIndex == 0 {
             labelView.text = " Computer Science "
@@ -55,10 +56,10 @@ class ActivityController: UIViewController {
     }
 
     @IBAction func prevButtonTapped(_ sender: UIButton) {
-        // Decrement the index and wrap around if necessary
+        // Decrease the index
         currentIndex = (currentIndex + imageNames.count - 1) % imageNames.count
 
-        // Set the new image
+        //set image
         imageView.image = UIImage(named: imageNames[currentIndex])
         if currentIndex == 0 {
             labelView.text = " Computer Science "
@@ -70,6 +71,7 @@ class ActivityController: UIViewController {
             labelView.text = " Philosophy "
         }
     }
+    //prepare for next screen transition
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             if segue.identifier == "showHelp" {
                 let destinationVC = segue.destination as! HelpDestinationViewController
@@ -152,7 +154,7 @@ class HintDestinationViewController: UIViewController {
 
 }
 
-
+// destination controller for checking the answers for a topic
 class AnswerCheckViewController: UIViewController {
 
     var questionIndex=0
@@ -171,6 +173,7 @@ class AnswerCheckViewController: UIViewController {
     var goodAnswers = 0
     
     override func viewDidLoad() {
+        //setting up the page
         super.viewDidLoad()
         if questionIndex == 0 {
             questionLabel.text = "Do you need physical servers to use a cloud computing service?"
@@ -194,6 +197,7 @@ class AnswerCheckViewController: UIViewController {
         
     }
     
+    // prints feedback relevant to the answer given
     func showFeedback(_ gAnswers: Int, _ wAnswers: Int){
         if gAnswers > 0 {
             feedbackLabel.text="Congratulations! The answer is correct. Move to the next topic."
@@ -205,22 +209,22 @@ class AnswerCheckViewController: UIViewController {
             }
         }
     }
-    
+    //when button one is tapped
     @IBAction func option1Selected(_ sender: UIButton) {
         checkAnswer(0,sender)
         showFeedback(goodAnswers, failedAnswers)
     }
-
+    //when button two is tapped
     @IBAction func option2Selected(_ sender: UIButton) {
         checkAnswer(1,sender)
         showFeedback(goodAnswers, failedAnswers)
     }
-
+    //when button three is tapped
     @IBAction func option3Selected(_ sender: UIButton) {
         checkAnswer(2,sender)
         showFeedback(goodAnswers, failedAnswers)
     }
-
+    //function meant to verify the validity of the answers
     func checkAnswer(_ selectedAnswerIndex: Int, _ btn: UIButton) {
         if selectedAnswerIndex == correctAnswerIndex {
             goodAnswers = goodAnswers + 1

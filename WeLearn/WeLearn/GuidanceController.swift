@@ -2,9 +2,9 @@
 //  GuidanceController.swift
 //  WeLearn
 //
-//  Created by Andrei Cinca on 14/03/2023.
+//  Created by Andrei Cinca 
 //
-
+// This Controller manages the guidance during the transitioning phase
 import Foundation
 import UIKit
 
@@ -28,6 +28,7 @@ class GuidanceController: UIViewController {
     }
     let locationsNames = ["bh01.pdf", "bh02.pdf", "bh03.pdf", "bh04.pdf"]
     
+    // when the next button is pressed, meaning that the user is ready to go to the next step
     @IBAction func nextButtonTapped(_ sender: UIButton) {
         // Increment the index and wrap around if necessary
         print("moved forward")
@@ -64,7 +65,7 @@ class GuidanceController: UIViewController {
         
         
     }
-    
+    // when the previous button is pressed, meaning that the user wants to return to one of the previous steps
     @IBAction func previousButtonTapped(_ sender: UIButton) {
         // Decrement the index and wrap around if necessary
         print("moved back")
